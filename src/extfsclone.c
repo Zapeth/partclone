@@ -194,7 +194,7 @@ void read_bitmap(char* device, file_system_info fs_info, unsigned long* bitmap, 
     /// check all free blocks in partition
     if (lfree != ext2fs_free_blocks_count(fs->super)) {
 	if ((fs->super->s_feature_ro_compat & EXT4_FEATURE_RO_COMPAT_GDT_CSUM) && (ext4_gfree_mismatch))
-	    log_mesg(1, 0, 0, fs_opt.debug, "%s: EXT4 bitmap metadata mismatch\n", __FILE__);
+	    log_mesg(1, 0, 0, fs_opt.debug, "%s: EXT4 bitmap metadata mismatch (%llu vs %llu)\n", __FILE__, lfree, ext2fs_free_blocks_count(fs->super));
 	else
 	    log_mesg(0, 1, 1, fs_opt.debug, "%s: bitmap free count err, partclone get free:%llu but extfs get %llu.\nPlease run fsck to check and repair the file system\n", __FILE__, lfree, ext2fs_free_blocks_count(fs->super));
     }
