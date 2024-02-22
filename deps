@@ -1,0 +1,14 @@
+update:
+	util-linux
+install:
+	e2fsprogs-devel ncurses-devel ntfs-3g-devel openssl-devel
+flags:
+	--enable-extfs --enable-fat --enable-ntfs --enable-btrfs --enable-fuse --enable-exfat --enable-xfs
+	#--enable-f2fs --enable-hfsp --enable-minix --enable-nilfs2
+notes:
+	PRs #53 deprecated, #52.1 and #52.2 superceded by a52a21f?
+
+autreconf
+./configure --enable-ncursesw --enable-all
+make
+make install
